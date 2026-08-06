@@ -1,39 +1,47 @@
-# Bengali Font Installer
+# Bangla Fonts Linux
 
-A small, dependency-free bash project to install a folder of Bengali (Bangla)
-fonts on any Linux system — either just for your user account or system-wide
-for everyone.
+A collection of 640+ Bengali (Bangla) fonts, bundled with a simple,
+dependency-free installer for Linux. Install just for your user account or
+system-wide for everyone — no manual font-dropping required, the fonts are
+already included.
 
-## Setup
+## Installation
 
-1. Drop your Bengali `.ttf` / `.otf` (or `.ttc`, `.otc`, `.woff`, `.woff2`)
-   font files into the `fonts/` folder here. Subfolders are fine too.
-2. Make the script executable (only needed once):
-   ```bash
-   chmod +x install.sh
-   ```
+### Option 1: `.deb` package (Debian/Ubuntu)
 
-## Usage
+The easiest option if you're on a Debian-based distro. Installs system-wide
+automatically.
 
-### Interactive (easiest)
+```bash
+sudo apt install ./bangla-fonts-linux_1.0.0_all.deb
+```
+
+### Option 2: Install script (any distro)
+
+Works on any Linux distro with `fontconfig` (Ubuntu, Fedora, Arch, etc).
+
 ```bash
 ./install.sh
 ```
 You'll be prompted to choose **user** or **system** install.
 
-### Non-interactive
+Non-interactive:
 ```bash
 # Install for just your user account (no sudo/root needed)
 ./install.sh --user
 
 # Install system-wide for all users (will prompt for sudo password)
 ./install.sh --system
-
-# Point at a font folder that isn't ./fonts
-./install.sh --user /path/to/some/other/font-folder
 ```
 
-### Uninstall
+## Uninstall
+
+**If installed via `.deb`:**
+```bash
+sudo apt remove bangla-fonts-linux
+```
+
+**If installed via `install.sh`:**
 ```bash
 ./install.sh --uninstall --user
 ./install.sh --uninstall --system
@@ -43,18 +51,23 @@ touch any other fonts on your system.
 
 ## Where fonts get installed
 
-| Mode   | Location                                  | Needs sudo? |
-|--------|--------------------------------------------|-------------|
-| user   | `~/.local/share/fonts/bengali-fonts/`      | No          |
-| system | `/usr/local/share/fonts/bengali-fonts/`    | Yes         |
+| Method              | Location                                  | Needs sudo? |
+|---------------------|--------------------------------------------|-------------|
+| `.deb`               | `/usr/share/fonts/truetype/bangla-fonts-linux/` | Yes (handled by apt) |
+| `install.sh --user`   | `~/.local/share/fonts/bengali-fonts/`      | No          |
+| `install.sh --system` | `/usr/local/share/fonts/bengali-fonts/`    | Yes         |
 
-Both are standard, distro-agnostic locations that `fontconfig` already scans
-by default on virtually every Linux distro (Ubuntu, Fedora, Arch, etc.) — no
-extra config files needed.
+All are standard, distro-agnostic locations that `fontconfig` already scans
+by default — no extra config needed.
+
+## What's included
+
+640+ Bengali/Bangla `.ttf` fonts, bundled in the `fonts/` folder — ready to
+install as-is, no downloading or sourcing fonts yourself.
 
 ## What the script does
 
-1. Validates the fonts folder exists and contains real font files.
+1. Confirms the bundled `fonts/` folder is present.
 2. Copies them into the appropriate fontconfig-managed directory.
 3. Sets sane permissions (world-readable for system installs).
 4. Runs `fc-cache -f` to rebuild the font cache so apps pick them up

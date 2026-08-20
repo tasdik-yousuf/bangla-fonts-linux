@@ -1,18 +1,4 @@
 #!/usr/bin/env bash
-#
-# install.sh — Install Bengali (Bangla) fonts on Linux
-#
-# Usage:
-#   ./install.sh                     Interactive mode (asks user vs system, uses ./fonts)
-#   ./install.sh --user              Install for current user only (no sudo needed)
-#   ./install.sh --system            Install system-wide (requires sudo)
-#   ./install.sh --user  /path/dir   Install fonts from a custom directory
-#   ./install.sh --system /path/dir
-#   ./install.sh --uninstall --user     Remove fonts installed by this tool (user)
-#   ./install.sh --uninstall --system   Remove fonts installed by this tool (system)
-#
-# Supported font formats: .ttf .otf .ttc .otc .woff .woff2 (woff kept but not
-# typically used for desktop rendering — included for completeness)
 
 set -euo pipefail
 
